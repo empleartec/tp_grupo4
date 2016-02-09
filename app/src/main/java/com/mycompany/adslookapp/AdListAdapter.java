@@ -1,6 +1,6 @@
 package com.mycompany.adslookapp;
 
-import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +14,10 @@ import java.util.ArrayList;
  */
 public class AdListAdapter extends BaseAdapter {
 
+    private Fragment context;
     private ArrayList<Ad> ads;
-    private Context context;
 
-    public AdListAdapter(Context context, ArrayList<Ad> ads){
+    public AdListAdapter(Fragment context, ArrayList<Ad> ads){
         this.context = context;
         this.ads = ads;
     }
@@ -41,7 +41,7 @@ public class AdListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         //Inflamos el xml
-        View adView = LayoutInflater.from(context).inflate(R.layout.item_ad, parent, false);
+        View adView = LayoutInflater.from(context.getContext()).inflate(R.layout.item_ad, parent, false);
 
         //Obtenemos la posicion de un objeto en el ArrayList
         Ad ad = getItem(position);

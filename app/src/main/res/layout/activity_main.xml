@@ -25,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            class="com.mycompany.adslookapp.ListFragment"/>
+            class="com.mycompany.adslookapp.AdListFragment"/>
 
         <fragment
             android:id="@+id/mapFragment"
