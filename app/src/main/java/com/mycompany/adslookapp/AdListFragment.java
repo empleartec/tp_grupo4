@@ -1,10 +1,12 @@
 package com.mycompany.adslookapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -44,6 +46,48 @@ public class AdListFragment  extends Fragment {
         // Conectamos el adapter a la listView.
         listView.setAdapter(myAdapter);
 
+        /*
+        Este es el metodo que llamamos cuando se selecciona un item de la lista
+        Ver http://stackoverflow.com/questions/5716599/how-to-set-onlistitemclick-for-listview-in-android
+        */
+        listView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        // Send the event to the host activity
+                        mCallback.onAdSelected(position);
+                    }
+                });
+
         return view;
     }
+
+    /*
+    Declaramos un callback para comunicarnos con la activity
+    Implementamos esta interface pare pasar datos del ad seleccionado al mapa
+    Ver http://developer.android.com/intl/es/training/basics/fragments/communicating.html
+    */
+
+    private OnAdSelectedListener mCallback;
+
+    public interface OnAdSelectedListener {
+        public void onAdSelected(int position);
+    }
+
+    //El tutorial de google declara public void onAttach(Activity activity). Esta deprecado!!
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnAdSelectedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnAdSelectedListener");
+        }
+    }
+
 }
