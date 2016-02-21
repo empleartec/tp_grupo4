@@ -1,16 +1,13 @@
 package com.mycompany.adslookapp;
 
+
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -18,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -43,10 +41,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mGoogleMap = googleMap;
 
-        mGoogleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(-34, -54))
-                .title("Marker"));
+        List<Ad> ads = AdsStore.getAll();
+
+        for (Ad ad: ads){
+            mGoogleMap.addMarker(new MarkerOptions()
+                    .position(ad.getCoord())
+                    .title(ad.getAddress()));
+        }
+
+        Ad lastAd = ads.get(ads.size() - 1);
+        LatLng lastAdLoc = lastAd.getCoord();
+
+        mGoogleMap.animateCamera(
+                CameraUpdateFactory
+                        .newLatLngZoom(lastAdLoc, 14));
+
+        //Esta linea no es util
+        //mGoogleMap.setMyLocationEnabled(true);
+
     }
-
-
 }

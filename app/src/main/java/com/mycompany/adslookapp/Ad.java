@@ -1,14 +1,16 @@
 package com.mycompany.adslookapp;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by pulpo on 09/02/16.
  */
 public class Ad {
 
     private String address;
-    private double[] coord;
+    private LatLng coord;
 
-    public Ad(String address, double[] coord){
+    public Ad(String address, LatLng coord){
         this.address = address;
         this.coord = coord;
     }
@@ -21,11 +23,11 @@ public class Ad {
         this.address = address;
     }
 
-    public double[] getCoord() {
+    public LatLng getCoord() {
         return coord;
     }
 
-    public void setCoord(double[] coord) {
+    public void setCoord(LatLng coord) {
         this.coord = coord;
     }
 
