@@ -42,7 +42,7 @@ public class AdListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         //Inflamos el xml
-        View adView = LayoutInflater.from(context.getContext()).inflate(R.layout.item_ad, parent, false);
+        View adView = LayoutInflater.from(context.getActivity()).inflate(R.layout.item_ad, parent, false);
 
         //Obtenemos la posicion de un objeto en el ArrayList
         Ad ad = getItem(position);

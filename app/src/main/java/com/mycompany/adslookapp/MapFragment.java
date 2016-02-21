@@ -11,6 +11,9 @@ import android.widget.TextView;
 /**
  * Created by pulpo on 09/02/16.
  */
+
+/*
+Horrible. Esto sobrescribia una clase de Android
 public class MapFragment extends Fragment {
 
     @Override
@@ -26,3 +29,4 @@ public class MapFragment extends Fragment {
         view.setText(coord);
     }
 }
+*/

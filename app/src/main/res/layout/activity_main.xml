@@ -28,11 +28,11 @@
             class="com.mycompany.adslookapp.AdListFragment"/>
 
         <fragment
-            android:id="@+id/mapFragment"
+            android:id="@+id/map"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="match_parent"
-            class="com.mycompany.adslookapp.MapFragment"/>
+            class="com.google.android.gms.maps.SupportMapFragment"/>
 
 
     </LinearLayout>
