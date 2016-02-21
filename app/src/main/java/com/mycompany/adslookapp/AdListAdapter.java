@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pulpo on 09/02/16.
@@ -15,9 +16,9 @@ import java.util.ArrayList;
 public class AdListAdapter extends BaseAdapter {
 
     private Fragment context;
-    private ArrayList<Ad> ads;
+    private List<Ad> ads;
 
-    public AdListAdapter(Fragment context, ArrayList<Ad> ads){
+    public AdListAdapter(Fragment context, List<Ad> ads){
         this.context = context;
         this.ads = ads;
     }
