@@ -1,5 +1,9 @@
 package com.mycompany.adslookapp;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 //import javax.annotation.Generated;
@@ -13,11 +17,16 @@ import java.util.List;
 public class Result {
 
     private String id;
+
+    @SerializedName("site_id")
+    @Expose
     private String siteId;
+
+
     private String title;
     private Object subtitle;
     private Seller seller;
-    private Integer price;
+    private BigDecimal price;
     private String currencyId;
     private Integer availableQuantity;
     private Integer soldQuantity;
@@ -71,7 +80,7 @@ public class Result {
      * @param attributes
      * @param acceptsMercadopago
      */
-    public Result(String id, String siteId, String title, Object subtitle, Seller seller, Integer price, String currencyId, Integer availableQuantity, Integer soldQuantity, String buyingMode, String listingTypeId, String stopTime, String condition, String permalink, String thumbnail, Boolean acceptsMercadopago, Installments installments, Address address, Shipping shipping, SellerAddress sellerAddress, List<Object> attributes, Integer originalPrice, String categoryId, Integer officialStoreId) {
+    public Result(String id, String siteId, String title, Object subtitle, Seller seller, BigDecimal price, String currencyId, Integer availableQuantity, Integer soldQuantity, String buyingMode, String listingTypeId, String stopTime, String condition, String permalink, String thumbnail, Boolean acceptsMercadopago, Installments installments, Address address, Shipping shipping, SellerAddress sellerAddress, List<Object> attributes, Integer originalPrice, String categoryId, Integer officialStoreId) {
         this.id = id;
         this.siteId = siteId;
         this.title = title;
@@ -218,7 +227,7 @@ public class Result {
      * @return
      * The price
      */
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -227,11 +236,11 @@ public class Result {
      * @param price
      * The price
      */
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public Result withPrice(Integer price) {
+    public Result withPrice(BigDecimal price) {
         this.price = price;
         return this;
     }

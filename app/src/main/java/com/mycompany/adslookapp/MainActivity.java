@@ -2,7 +2,6 @@ package com.mycompany.adslookapp;
 
 
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,17 +16,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.http.GET;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    public static final String MELI_BASE_URL = "https://api.mercadolibre.com/sites/MLA/";
 
     private GoogleMap mGoogleMap;
 
@@ -51,20 +50,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final TextView jsonText = (TextView) findViewById(R.id.json);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.mercadolibre.com/sites/MLA/")
+                .baseUrl(MELI_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         MeliService service = retrofit.create(MeliService.class);
 
-        Call <ResponseBody> loadAds = service.loadAds();
+        Call <MLjson> loadAds = service.loadAds("ipod");
 
-        loadAds.enqueue(new Callback<ResponseBody>() {
+        loadAds.enqueue(new Callback<MLjson>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<MLjson> call, Response<MLjson> response) {
                 try {
                     jsonText.setText(
                             response.body()!=null?
-                                    response.body().string():
+                                    response.body().toString():
                                     response.errorBody().string());
+                    MLjson mLjson = response.body();
+                    if (mLjson != null && mLjson.getResults() != null) {
+                        Log.d("MELI", "" + mLjson.getResults().size());
+                    }
                 }
                 catch (IOException e){
                     e.printStackTrace();
@@ -72,20 +76,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+            public void onFailure(Call<MLjson> call, Throwable t) {
+                Log.e("MELI", "Error " + t.getMessage());
             }
         });
     }
 
 
-    // Retrofit turns your HTTP API into a Java interface
-    public interface MeliService {
-        @GET("search?q=ipod&limit=5")
-        Call<ResponseBody> loadAds();
-        //El string de la busqueda debe ir a futuro como parametro de loadAds    
-    //ver http://inthecheesefactory.com/blog/retrofit-2.0/en
-    }
+
 
     //Llamamos al mapa
     @Override
