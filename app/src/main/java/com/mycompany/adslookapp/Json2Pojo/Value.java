@@ -1,29 +1,34 @@
-package com.mycompany.adslookapp;
+
+package com.mycompany.adslookapp.Json2Pojo;
 
 import java.util.ArrayList;
 import java.util.List;
 //import javax.annotation.Generated;
-
-/**
- * Created by pulpo on 22/02/16.
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
 public class Value {
 
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("path_from_root")
+    @Expose
     private List<PathFromRoot> pathFromRoot = new ArrayList<PathFromRoot>();
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public Value() {
     }
 
     /**
-     *
+     * 
      * @param id
      * @param name
      * @param pathFromRoot
@@ -35,18 +40,18 @@ public class Value {
     }
 
     /**
-     *
+     * 
      * @return
-     * The id
+     *     The id
      */
     public String getId() {
         return id;
     }
 
     /**
-     *
+     * 
      * @param id
-     * The id
+     *     The id
      */
     public void setId(String id) {
         this.id = id;
@@ -58,18 +63,18 @@ public class Value {
     }
 
     /**
-     *
+     * 
      * @return
-     * The name
+     *     The name
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
+     * 
      * @param name
-     * The name
+     *     The name
      */
     public void setName(String name) {
         this.name = name;
@@ -81,18 +86,18 @@ public class Value {
     }
 
     /**
-     *
+     * 
      * @return
-     * The pathFromRoot
+     *     The pathFromRoot
      */
     public List<PathFromRoot> getPathFromRoot() {
         return pathFromRoot;
     }
 
     /**
-     *
+     * 
      * @param pathFromRoot
-     * The path_from_root
+     *     The path_from_root
      */
     public void setPathFromRoot(List<PathFromRoot> pathFromRoot) {
         this.pathFromRoot = pathFromRoot;
@@ -104,4 +109,3 @@ public class Value {
     }
 
 }
-

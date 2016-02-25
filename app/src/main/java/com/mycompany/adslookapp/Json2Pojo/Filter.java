@@ -1,36 +1,43 @@
-package com.mycompany.adslookapp;
+
+package com.mycompany.adslookapp.Json2Pojo;
 
 import java.util.ArrayList;
 import java.util.List;
 //import javax.annotation.Generated;
-
-/**
- * Created by pulpo on 22/02/16.
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
-public class AvailableFilter {
+public class Filter {
 
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("type")
+    @Expose
     private String type;
-    private List<Value_> values = new ArrayList<Value_>();
+    @SerializedName("values")
+    @Expose
+    private List<Value> values = new ArrayList<Value>();
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
-    public AvailableFilter() {
+    public Filter() {
     }
 
     /**
-     *
+     * 
      * @param id
      * @param values
      * @param name
      * @param type
      */
-    public AvailableFilter(String id, String name, String type, List<Value_> values) {
+    public Filter(String id, String name, String type, List<Value> values) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -38,96 +45,95 @@ public class AvailableFilter {
     }
 
     /**
-     *
+     * 
      * @return
-     * The id
+     *     The id
      */
     public String getId() {
         return id;
     }
 
     /**
-     *
+     * 
      * @param id
-     * The id
+     *     The id
      */
     public void setId(String id) {
         this.id = id;
     }
 
-    public AvailableFilter withId(String id) {
+    public Filter withId(String id) {
         this.id = id;
         return this;
     }
 
     /**
-     *
+     * 
      * @return
-     * The name
+     *     The name
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
+     * 
      * @param name
-     * The name
+     *     The name
      */
     public void setName(String name) {
         this.name = name;
     }
 
-    public AvailableFilter withName(String name) {
+    public Filter withName(String name) {
         this.name = name;
         return this;
     }
 
     /**
-     *
+     * 
      * @return
-     * The type
+     *     The type
      */
     public String getType() {
         return type;
     }
 
     /**
-     *
+     * 
      * @param type
-     * The type
+     *     The type
      */
     public void setType(String type) {
         this.type = type;
     }
 
-    public AvailableFilter withType(String type) {
+    public Filter withType(String type) {
         this.type = type;
         return this;
     }
 
     /**
-     *
+     * 
      * @return
-     * The values
+     *     The values
      */
-    public List<Value_> getValues() {
+    public List<Value> getValues() {
         return values;
     }
 
     /**
-     *
+     * 
      * @param values
-     * The values
+     *     The values
      */
-    public void setValues(List<Value_> values) {
+    public void setValues(List<Value> values) {
         this.values = values;
     }
 
-    public AvailableFilter withValues(List<Value_> values) {
+    public Filter withValues(List<Value> values) {
         this.values = values;
         return this;
     }
 
 }
-

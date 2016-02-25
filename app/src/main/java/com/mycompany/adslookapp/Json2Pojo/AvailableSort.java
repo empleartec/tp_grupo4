@@ -1,79 +1,81 @@
-package com.mycompany.adslookapp;
 
-/**
- * Created by pulpo on 22/02/16.
- */
+package com.mycompany.adslookapp.Json2Pojo;
 
 //import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
-public class Sort {
+public class AvailableSort {
 
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("name")
+    @Expose
     private String name;
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
-    public Sort() {
+    public AvailableSort() {
     }
 
     /**
-     *
+     * 
      * @param id
      * @param name
      */
-    public Sort(String id, String name) {
+    public AvailableSort(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
     /**
-     *
+     * 
      * @return
-     * The id
+     *     The id
      */
     public String getId() {
         return id;
     }
 
     /**
-     *
+     * 
      * @param id
-     * The id
+     *     The id
      */
     public void setId(String id) {
         this.id = id;
     }
 
-    public Sort withId(String id) {
+    public AvailableSort withId(String id) {
         this.id = id;
         return this;
     }
 
     /**
-     *
+     * 
      * @return
-     * The name
+     *     The name
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
+     * 
      * @param name
-     * The name
+     *     The name
      */
     public void setName(String name) {
         this.name = name;
     }
 
-    public Sort withName(String name) {
+    public AvailableSort withName(String name) {
         this.name = name;
         return this;
     }
 
 }
-

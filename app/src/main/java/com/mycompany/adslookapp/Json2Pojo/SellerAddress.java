@@ -1,33 +1,50 @@
-package com.mycompany.adslookapp;
 
-/**
- * Created by pulpo on 22/02/16.
- */
+package com.mycompany.adslookapp.Json2Pojo;
 
 //import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
 public class SellerAddress {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
+    @SerializedName("comment")
+    @Expose
     private String comment;
+    @SerializedName("address_line")
+    @Expose
     private String addressLine;
+    @SerializedName("zip_code")
+    @Expose
     private String zipCode;
+    @SerializedName("country")
+    @Expose
     private Country country;
+    @SerializedName("state")
+    @Expose
     private State state;
+    @SerializedName("city")
+    @Expose
     private City city;
-    private Double latitude;
-    private Double longitude;
+    @SerializedName("latitude")
+    @Expose
+    private Float latitude;
+    @SerializedName("longitude")
+    @Expose
+    private Float longitude;
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public SellerAddress() {
     }
 
     /**
-     *
+     * 
      * @param addressLine
      * @param id
      * @param zipCode
@@ -38,7 +55,7 @@ public class SellerAddress {
      * @param city
      * @param country
      */
-    public SellerAddress(Integer id, String comment, String addressLine, String zipCode, Country country, State state, City city, Double latitude, Double longitude) {
+    public SellerAddress(Integer id, String comment, String addressLine, String zipCode, Country country, State state, City city, Float latitude, Float longitude) {
         this.id = id;
         this.comment = comment;
         this.addressLine = addressLine;
@@ -51,18 +68,18 @@ public class SellerAddress {
     }
 
     /**
-     *
+     * 
      * @return
-     * The id
+     *     The id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     *
+     * 
      * @param id
-     * The id
+     *     The id
      */
     public void setId(Integer id) {
         this.id = id;
@@ -74,18 +91,18 @@ public class SellerAddress {
     }
 
     /**
-     *
+     * 
      * @return
-     * The comment
+     *     The comment
      */
     public String getComment() {
         return comment;
     }
 
     /**
-     *
+     * 
      * @param comment
-     * The comment
+     *     The comment
      */
     public void setComment(String comment) {
         this.comment = comment;
@@ -97,18 +114,18 @@ public class SellerAddress {
     }
 
     /**
-     *
+     * 
      * @return
-     * The addressLine
+     *     The addressLine
      */
     public String getAddressLine() {
         return addressLine;
     }
 
     /**
-     *
+     * 
      * @param addressLine
-     * The address_line
+     *     The address_line
      */
     public void setAddressLine(String addressLine) {
         this.addressLine = addressLine;
@@ -120,18 +137,18 @@ public class SellerAddress {
     }
 
     /**
-     *
+     * 
      * @return
-     * The zipCode
+     *     The zipCode
      */
     public String getZipCode() {
         return zipCode;
     }
 
     /**
-     *
+     * 
      * @param zipCode
-     * The zip_code
+     *     The zip_code
      */
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
@@ -143,18 +160,18 @@ public class SellerAddress {
     }
 
     /**
-     *
+     * 
      * @return
-     * The country
+     *     The country
      */
     public Country getCountry() {
         return country;
     }
 
     /**
-     *
+     * 
      * @param country
-     * The country
+     *     The country
      */
     public void setCountry(Country country) {
         this.country = country;
@@ -166,18 +183,18 @@ public class SellerAddress {
     }
 
     /**
-     *
+     * 
      * @return
-     * The state
+     *     The state
      */
     public State getState() {
         return state;
     }
 
     /**
-     *
+     * 
      * @param state
-     * The state
+     *     The state
      */
     public void setState(State state) {
         this.state = state;
@@ -189,18 +206,18 @@ public class SellerAddress {
     }
 
     /**
-     *
+     * 
      * @return
-     * The city
+     *     The city
      */
     public City getCity() {
         return city;
     }
 
     /**
-     *
+     * 
      * @param city
-     * The city
+     *     The city
      */
     public void setCity(City city) {
         this.city = city;
@@ -212,47 +229,47 @@ public class SellerAddress {
     }
 
     /**
-     *
+     * 
      * @return
-     * The latitude
+     *     The latitude
      */
-    public Double getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
     /**
-     *
+     * 
      * @param latitude
-     * The latitude
+     *     The latitude
      */
-    public void setLatitude(Double latitude) {
+    public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
 
-    public SellerAddress withLatitude(Double latitude) {
+    public SellerAddress withLatitude(Float latitude) {
         this.latitude = latitude;
         return this;
     }
 
     /**
-     *
+     * 
      * @return
-     * The longitude
+     *     The longitude
      */
-    public Double getLongitude() {
+    public Float getLongitude() {
         return longitude;
     }
 
     /**
-     *
+     * 
      * @param longitude
-     * The longitude
+     *     The longitude
      */
-    public void setLongitude(Double longitude) {
+    public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
 
-    public SellerAddress withLongitude(Double longitude) {
+    public SellerAddress withLongitude(Float longitude) {
         this.longitude = longitude;
         return this;
     }

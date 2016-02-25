@@ -1,27 +1,32 @@
-package com.mycompany.adslookapp;
 
-/**
- * Created by pulpo on 22/02/16.
- */
+package com.mycompany.adslookapp.Json2Pojo;
 
- //import javax.annotation.Generated;
+//import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
 public class Paging {
 
+    @SerializedName("total")
+    @Expose
     private Integer total;
+    @SerializedName("offset")
+    @Expose
     private Integer offset;
+    @SerializedName("limit")
+    @Expose
     private Integer limit;
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public Paging() {
     }
 
     /**
-     *
+     * 
      * @param limit
      * @param total
      * @param offset
@@ -33,18 +38,18 @@ public class Paging {
     }
 
     /**
-     *
+     * 
      * @return
-     * The total
+     *     The total
      */
     public Integer getTotal() {
         return total;
     }
 
     /**
-     *
+     * 
      * @param total
-     * The total
+     *     The total
      */
     public void setTotal(Integer total) {
         this.total = total;
@@ -56,18 +61,18 @@ public class Paging {
     }
 
     /**
-     *
+     * 
      * @return
-     * The offset
+     *     The offset
      */
     public Integer getOffset() {
         return offset;
     }
 
     /**
-     *
+     * 
      * @param offset
-     * The offset
+     *     The offset
      */
     public void setOffset(Integer offset) {
         this.offset = offset;
@@ -79,18 +84,18 @@ public class Paging {
     }
 
     /**
-     *
+     * 
      * @return
-     * The limit
+     *     The limit
      */
     public Integer getLimit() {
         return limit;
     }
 
     /**
-     *
+     * 
      * @param limit
-     * The limit
+     *     The limit
      */
     public void setLimit(Integer limit) {
         this.limit = limit;

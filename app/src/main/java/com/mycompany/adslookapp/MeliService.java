@@ -1,5 +1,7 @@
 package com.mycompany.adslookapp;
 
+import com.mycompany.adslookapp.Json2Pojo.MLjson;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

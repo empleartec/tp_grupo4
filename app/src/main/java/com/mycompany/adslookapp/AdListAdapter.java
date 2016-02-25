@@ -16,21 +16,21 @@ import java.util.List;
 public class AdListAdapter extends BaseAdapter {
 
     private Fragment context;
-    private List<Ad> ads;
+    private ArrayList<String> titles;
 
-    public AdListAdapter(Fragment context, List<Ad> ads){
+    public AdListAdapter(Fragment context, ArrayList<String> titles){
         this.context = context;
-        this.ads = ads;
+        this.titles = titles;
     }
 
     @Override
     public int getCount() {
-        return ads.size();
+        return titles.size();
     }
 
     @Override
-    public Ad getItem(int position) {
-        return ads.get(position);
+    public String getItem(int position) {
+        return titles.get(position);
     }
 
     @Override
@@ -45,11 +45,11 @@ public class AdListAdapter extends BaseAdapter {
         View adView = LayoutInflater.from(context.getActivity()).inflate(R.layout.item_ad, parent, false);
 
         //Obtenemos la posicion de un objeto en el ArrayList
-        Ad ad = getItem(position);
+        String title = getItem(position);
 
         //Insertamos los datos del objeto en la vista. Por ahora, solo la direccion del vendedor
         TextView address = (TextView) adView.findViewById(R.id.address);
-        address.setText(ad.getAddress());
+        address.setText(title);
 
         return adView;
     }

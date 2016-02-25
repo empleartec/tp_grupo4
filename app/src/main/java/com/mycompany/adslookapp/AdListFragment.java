@@ -3,6 +3,7 @@ package com.mycompany.adslookapp;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,19 @@ import java.util.ArrayList;
  */
 public class AdListFragment  extends Fragment {
 
+    ArrayList<String> adsTitle = new ArrayList<>();
+
+    /*
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+       adsTitle  = this.getArguments().getStringArrayList("adsTitle");
+
+    }
+*/
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,12 +39,27 @@ public class AdListFragment  extends Fragment {
 
         // Llamamos a nuestra listView y al adapter
         ListView listView = (ListView) view.findViewById(R.id.ad_listview);
-        AdListAdapter myAdapter = new AdListAdapter(this, AdsStore.getAll());
+
+
+        ArrayList<String> adsTitle = new ArrayList<>();
+        adsTitle.add("anuncio1");
+        adsTitle.add("anuncio2");
+        adsTitle.add("anuncio3");
+        adsTitle.add("anuncio4");
+        adsTitle.add("anuncio5");
+
+      //  ArrayList<String> adsTitle = getArguments().getStringArrayList("adsTitle");
+
+        //ArrayList<String> adsTitle = this.getArguments().getStringArrayList("adsTitle");
+
+
+                AdListAdapter myAdapter = new AdListAdapter(this, adsTitle);
 
         // Conectamos el adapter a la listView.
         listView.setAdapter(myAdapter);
 
         return view;
     }
+
 
 }

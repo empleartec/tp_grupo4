@@ -1,60 +1,97 @@
-package com.mycompany.adslookapp;
 
+package com.mycompany.adslookapp.Json2Pojo;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.math.BigDecimal;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-//import javax.annotation.Generated;
-
-/**
- * Created by pulpo on 22/02/16.
- */
-
 //@Generated("org.jsonschema2pojo")
-
 public class Result {
 
+    @SerializedName("id")
+    @Expose
     private String id;
-
     @SerializedName("site_id")
     @Expose
     private String siteId;
-
-
+    @SerializedName("title")
+    @Expose
     private String title;
+    @SerializedName("subtitle")
+    @Expose
     private Object subtitle;
+    @SerializedName("seller")
+    @Expose
     private Seller seller;
+    @SerializedName("price")
+    @Expose
     private BigDecimal price;
+    @SerializedName("currency_id")
+    @Expose
     private String currencyId;
+    @SerializedName("available_quantity")
+    @Expose
     private Integer availableQuantity;
+    @SerializedName("sold_quantity")
+    @Expose
     private Integer soldQuantity;
+    @SerializedName("buying_mode")
+    @Expose
     private String buyingMode;
+    @SerializedName("listing_type_id")
+    @Expose
     private String listingTypeId;
+    @SerializedName("stop_time")
+    @Expose
     private String stopTime;
+    @SerializedName("condition")
+    @Expose
     private String condition;
+    @SerializedName("permalink")
+    @Expose
     private String permalink;
+    @SerializedName("thumbnail")
+    @Expose
     private String thumbnail;
+    @SerializedName("accepts_mercadopago")
+    @Expose
     private Boolean acceptsMercadopago;
+    @SerializedName("installments")
+    @Expose
     private Installments installments;
+    @SerializedName("address")
+    @Expose
     private Address address;
+    @SerializedName("shipping")
+    @Expose
     private Shipping shipping;
+    @SerializedName("seller_address")
+    @Expose
     private SellerAddress sellerAddress;
+    @SerializedName("attributes")
+    @Expose
     private List<Object> attributes = new ArrayList<Object>();
-    private Integer originalPrice;
+    @SerializedName("original_price")
+    @Expose
+    private BigDecimal originalPrice;
+    @SerializedName("category_id")
+    @Expose
     private String categoryId;
+    @SerializedName("official_store_id")
+    @Expose
     private Integer officialStoreId;
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public Result() {
     }
 
     /**
-     *
+     * 
      * @param condition
      * @param currencyId
      * @param categoryId
@@ -80,7 +117,7 @@ public class Result {
      * @param attributes
      * @param acceptsMercadopago
      */
-    public Result(String id, String siteId, String title, Object subtitle, Seller seller, BigDecimal price, String currencyId, Integer availableQuantity, Integer soldQuantity, String buyingMode, String listingTypeId, String stopTime, String condition, String permalink, String thumbnail, Boolean acceptsMercadopago, Installments installments, Address address, Shipping shipping, SellerAddress sellerAddress, List<Object> attributes, Integer originalPrice, String categoryId, Integer officialStoreId) {
+    public Result(String id, String siteId, String title, Object subtitle, Seller seller, BigDecimal price, String currencyId, Integer availableQuantity, Integer soldQuantity, String buyingMode, String listingTypeId, String stopTime, String condition, String permalink, String thumbnail, Boolean acceptsMercadopago, Installments installments, Address address, Shipping shipping, SellerAddress sellerAddress, List<Object> attributes, BigDecimal originalPrice, String categoryId, Integer officialStoreId) {
         this.id = id;
         this.siteId = siteId;
         this.title = title;
@@ -108,18 +145,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The id
+     *     The id
      */
     public String getId() {
         return id;
     }
 
     /**
-     *
+     * 
      * @param id
-     * The id
+     *     The id
      */
     public void setId(String id) {
         this.id = id;
@@ -131,18 +168,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The siteId
+     *     The siteId
      */
     public String getSiteId() {
         return siteId;
     }
 
     /**
-     *
+     * 
      * @param siteId
-     * The site_id
+     *     The site_id
      */
     public void setSiteId(String siteId) {
         this.siteId = siteId;
@@ -154,18 +191,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The title
+     *     The title
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     *
+     * 
      * @param title
-     * The title
+     *     The title
      */
     public void setTitle(String title) {
         this.title = title;
@@ -177,18 +214,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The subtitle
+     *     The subtitle
      */
     public Object getSubtitle() {
         return subtitle;
     }
 
     /**
-     *
+     * 
      * @param subtitle
-     * The subtitle
+     *     The subtitle
      */
     public void setSubtitle(Object subtitle) {
         this.subtitle = subtitle;
@@ -200,18 +237,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The seller
+     *     The seller
      */
     public Seller getSeller() {
         return seller;
     }
 
     /**
-     *
+     * 
      * @param seller
-     * The seller
+     *     The seller
      */
     public void setSeller(Seller seller) {
         this.seller = seller;
@@ -223,18 +260,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The price
+     *     The price
      */
     public BigDecimal getPrice() {
         return price;
     }
 
     /**
-     *
+     * 
      * @param price
-     * The price
+     *     The price
      */
     public void setPrice(BigDecimal price) {
         this.price = price;
@@ -246,18 +283,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The currencyId
+     *     The currencyId
      */
     public String getCurrencyId() {
         return currencyId;
     }
 
     /**
-     *
+     * 
      * @param currencyId
-     * The currency_id
+     *     The currency_id
      */
     public void setCurrencyId(String currencyId) {
         this.currencyId = currencyId;
@@ -269,18 +306,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The availableQuantity
+     *     The availableQuantity
      */
     public Integer getAvailableQuantity() {
         return availableQuantity;
     }
 
     /**
-     *
+     * 
      * @param availableQuantity
-     * The available_quantity
+     *     The available_quantity
      */
     public void setAvailableQuantity(Integer availableQuantity) {
         this.availableQuantity = availableQuantity;
@@ -292,18 +329,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The soldQuantity
+     *     The soldQuantity
      */
     public Integer getSoldQuantity() {
         return soldQuantity;
     }
 
     /**
-     *
+     * 
      * @param soldQuantity
-     * The sold_quantity
+     *     The sold_quantity
      */
     public void setSoldQuantity(Integer soldQuantity) {
         this.soldQuantity = soldQuantity;
@@ -315,18 +352,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The buyingMode
+     *     The buyingMode
      */
     public String getBuyingMode() {
         return buyingMode;
     }
 
     /**
-     *
+     * 
      * @param buyingMode
-     * The buying_mode
+     *     The buying_mode
      */
     public void setBuyingMode(String buyingMode) {
         this.buyingMode = buyingMode;
@@ -338,18 +375,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The listingTypeId
+     *     The listingTypeId
      */
     public String getListingTypeId() {
         return listingTypeId;
     }
 
     /**
-     *
+     * 
      * @param listingTypeId
-     * The listing_type_id
+     *     The listing_type_id
      */
     public void setListingTypeId(String listingTypeId) {
         this.listingTypeId = listingTypeId;
@@ -361,18 +398,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The stopTime
+     *     The stopTime
      */
     public String getStopTime() {
         return stopTime;
     }
 
     /**
-     *
+     * 
      * @param stopTime
-     * The stop_time
+     *     The stop_time
      */
     public void setStopTime(String stopTime) {
         this.stopTime = stopTime;
@@ -384,18 +421,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The condition
+     *     The condition
      */
     public String getCondition() {
         return condition;
     }
 
     /**
-     *
+     * 
      * @param condition
-     * The condition
+     *     The condition
      */
     public void setCondition(String condition) {
         this.condition = condition;
@@ -407,18 +444,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The permalink
+     *     The permalink
      */
     public String getPermalink() {
         return permalink;
     }
 
     /**
-     *
+     * 
      * @param permalink
-     * The permalink
+     *     The permalink
      */
     public void setPermalink(String permalink) {
         this.permalink = permalink;
@@ -430,18 +467,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The thumbnail
+     *     The thumbnail
      */
     public String getThumbnail() {
         return thumbnail;
     }
 
     /**
-     *
+     * 
      * @param thumbnail
-     * The thumbnail
+     *     The thumbnail
      */
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
@@ -453,18 +490,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The acceptsMercadopago
+     *     The acceptsMercadopago
      */
     public Boolean getAcceptsMercadopago() {
         return acceptsMercadopago;
     }
 
     /**
-     *
+     * 
      * @param acceptsMercadopago
-     * The accepts_mercadopago
+     *     The accepts_mercadopago
      */
     public void setAcceptsMercadopago(Boolean acceptsMercadopago) {
         this.acceptsMercadopago = acceptsMercadopago;
@@ -476,18 +513,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The installments
+     *     The installments
      */
     public Installments getInstallments() {
         return installments;
     }
 
     /**
-     *
+     * 
      * @param installments
-     * The installments
+     *     The installments
      */
     public void setInstallments(Installments installments) {
         this.installments = installments;
@@ -499,18 +536,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The address
+     *     The address
      */
     public Address getAddress() {
         return address;
     }
 
     /**
-     *
+     * 
      * @param address
-     * The address
+     *     The address
      */
     public void setAddress(Address address) {
         this.address = address;
@@ -522,18 +559,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The shipping
+     *     The shipping
      */
     public Shipping getShipping() {
         return shipping;
     }
 
     /**
-     *
+     * 
      * @param shipping
-     * The shipping
+     *     The shipping
      */
     public void setShipping(Shipping shipping) {
         this.shipping = shipping;
@@ -545,18 +582,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The sellerAddress
+     *     The sellerAddress
      */
     public SellerAddress getSellerAddress() {
         return sellerAddress;
     }
 
     /**
-     *
+     * 
      * @param sellerAddress
-     * The seller_address
+     *     The seller_address
      */
     public void setSellerAddress(SellerAddress sellerAddress) {
         this.sellerAddress = sellerAddress;
@@ -568,18 +605,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The attributes
+     *     The attributes
      */
     public List<Object> getAttributes() {
         return attributes;
     }
 
     /**
-     *
+     * 
      * @param attributes
-     * The attributes
+     *     The attributes
      */
     public void setAttributes(List<Object> attributes) {
         this.attributes = attributes;
@@ -591,41 +628,41 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The originalPrice
+     *     The originalPrice
      */
-    public Integer getOriginalPrice() {
+    public BigDecimal getOriginalPrice() {
         return originalPrice;
     }
 
     /**
-     *
+     * 
      * @param originalPrice
-     * The original_price
+     *     The original_price
      */
-    public void setOriginalPrice(Integer originalPrice) {
+    public void setOriginalPrice(BigDecimal originalPrice) {
         this.originalPrice = originalPrice;
     }
 
-    public Result withOriginalPrice(Integer originalPrice) {
+    public Result withOriginalPrice(BigDecimal originalPrice) {
         this.originalPrice = originalPrice;
         return this;
     }
 
     /**
-     *
+     * 
      * @return
-     * The categoryId
+     *     The categoryId
      */
     public String getCategoryId() {
         return categoryId;
     }
 
     /**
-     *
+     * 
      * @param categoryId
-     * The category_id
+     *     The category_id
      */
     public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
@@ -637,18 +674,18 @@ public class Result {
     }
 
     /**
-     *
+     * 
      * @return
-     * The officialStoreId
+     *     The officialStoreId
      */
     public Integer getOfficialStoreId() {
         return officialStoreId;
     }
 
     /**
-     *
+     * 
      * @param officialStoreId
-     * The official_store_id
+     *     The official_store_id
      */
     public void setOfficialStoreId(Integer officialStoreId) {
         this.officialStoreId = officialStoreId;

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
 import android.util.Log;
 import android.widget.TextView;
 
@@ -14,9 +15,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mycompany.adslookapp.Json2Pojo.MLjson;
+import com.mycompany.adslookapp.Json2Pojo.Result;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +35,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private GoogleMap mGoogleMap;
 
+
+    //Creamos un array con los titulos de cada articulo
+    ArrayList<String> adsTitle = new ArrayList<>();
+    Bundle resultsList = new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Log.d("FUNKA", "Debugger funcionando");
 
-        Fragment listFragment =  (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
+        final Fragment listFragment =  (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -62,12 +72,34 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onResponse(Call<MLjson> call, Response<MLjson> response) {
                 try {
                     jsonText.setText(
-                            response.body()!=null?
-                                    response.body().toString():
+                            response.body() != null ?
+                                    response.body().toString() :
                                     response.errorBody().string());
+
+
                     MLjson mLjson = response.body();
+
+
                     if (mLjson != null && mLjson.getResults() != null) {
                         Log.d("MELI", "" + mLjson.getResults().size());
+                        Log.d("MELI2", "" + response.body().toString());
+
+
+
+
+                        //Llenamos el array con los titulos de los resultados
+/*
+                        for (int i=0; i<mLjson.getResults().size(); i++) {
+                            adsTitle.add(mLjson.getResults()[i].getTitle());
+                        }
+
+                        //Creamos un bundle y pasamos los titulos a AdListFragment
+
+                        resultsList.putStringArrayList("adsTitle", adsTitle);
+
+                        //listFragment.setArguments(resultsList);
+*/
+
                     }
                 }
                 catch (IOException e){

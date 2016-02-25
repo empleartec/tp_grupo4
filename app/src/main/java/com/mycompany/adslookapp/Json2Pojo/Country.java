@@ -1,79 +1,81 @@
-package com.mycompany.adslookapp;
 
-/**
- * Created by pulpo on 22/02/16.
- */
+package com.mycompany.adslookapp.Json2Pojo;
 
 //import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
-public class City {
+public class Country {
 
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("name")
+    @Expose
     private String name;
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
-    public City() {
+    public Country() {
     }
 
     /**
-     *
+     * 
      * @param id
      * @param name
      */
-    public City(String id, String name) {
+    public Country(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
     /**
-     *
+     * 
      * @return
-     * The id
+     *     The id
      */
     public String getId() {
         return id;
     }
 
     /**
-     *
+     * 
      * @param id
-     * The id
+     *     The id
      */
     public void setId(String id) {
         this.id = id;
     }
 
-    public City withId(String id) {
+    public Country withId(String id) {
         this.id = id;
         return this;
     }
 
     /**
-     *
+     * 
      * @return
-     * The name
+     *     The name
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
+     * 
      * @param name
-     * The name
+     *     The name
      */
     public void setName(String name) {
         this.name = name;
     }
 
-    public City withName(String name) {
+    public Country withName(String name) {
         this.name = name;
         return this;
     }
 
 }
-

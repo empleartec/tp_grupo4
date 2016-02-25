@@ -1,28 +1,35 @@
-package com.mycompany.adslookapp;
+
+package com.mycompany.adslookapp.Json2Pojo;
 
 //import javax.annotation.Generated;
-
-/**
- * Created by pulpo on 22/02/16.
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
 public class Address {
 
+    @SerializedName("state_id")
+    @Expose
     private String stateId;
+    @SerializedName("state_name")
+    @Expose
     private String stateName;
+    @SerializedName("city_id")
+    @Expose
     private String cityId;
+    @SerializedName("city_name")
+    @Expose
     private String cityName;
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public Address() {
     }
 
     /**
-     *
+     * 
      * @param cityId
      * @param stateId
      * @param cityName
@@ -36,18 +43,18 @@ public class Address {
     }
 
     /**
-     *
+     * 
      * @return
-     * The stateId
+     *     The stateId
      */
     public String getStateId() {
         return stateId;
     }
 
     /**
-     *
+     * 
      * @param stateId
-     * The state_id
+     *     The state_id
      */
     public void setStateId(String stateId) {
         this.stateId = stateId;
@@ -59,18 +66,18 @@ public class Address {
     }
 
     /**
-     *
+     * 
      * @return
-     * The stateName
+     *     The stateName
      */
     public String getStateName() {
         return stateName;
     }
 
     /**
-     *
+     * 
      * @param stateName
-     * The state_name
+     *     The state_name
      */
     public void setStateName(String stateName) {
         this.stateName = stateName;
@@ -82,18 +89,18 @@ public class Address {
     }
 
     /**
-     *
+     * 
      * @return
-     * The cityId
+     *     The cityId
      */
     public String getCityId() {
         return cityId;
     }
 
     /**
-     *
+     * 
      * @param cityId
-     * The city_id
+     *     The city_id
      */
     public void setCityId(String cityId) {
         this.cityId = cityId;
@@ -105,18 +112,18 @@ public class Address {
     }
 
     /**
-     *
+     * 
      * @return
-     * The cityName
+     *     The cityName
      */
     public String getCityName() {
         return cityName;
     }
 
     /**
-     *
+     * 
      * @param cityName
-     * The city_name
+     *     The city_name
      */
     public void setCityName(String cityName) {
         this.cityName = cityName;
@@ -128,4 +135,3 @@ public class Address {
     }
 
 }
-

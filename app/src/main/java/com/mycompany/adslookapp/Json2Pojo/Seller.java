@@ -1,31 +1,40 @@
-package com.mycompany.adslookapp;
+
+package com.mycompany.adslookapp.Json2Pojo;
 
 import java.util.ArrayList;
 import java.util.List;
 //import javax.annotation.Generated;
-
-/**
- * Created by pulpo on 22/02/16.
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
 public class Seller {
 
+    @SerializedName("id")
+    @Expose
     private Integer id;
+    @SerializedName("power_seller_status")
+    @Expose
     private Object powerSellerStatus;
+    @SerializedName("car_dealer")
+    @Expose
     private Boolean carDealer;
+    @SerializedName("real_estate_agency")
+    @Expose
     private Boolean realEstateAgency;
+    @SerializedName("tags")
+    @Expose
     private List<Object> tags = new ArrayList<Object>();
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public Seller() {
     }
 
     /**
-     *
+     * 
      * @param tags
      * @param powerSellerStatus
      * @param id
@@ -41,18 +50,18 @@ public class Seller {
     }
 
     /**
-     *
+     * 
      * @return
-     * The id
+     *     The id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     *
+     * 
      * @param id
-     * The id
+     *     The id
      */
     public void setId(Integer id) {
         this.id = id;
@@ -64,18 +73,18 @@ public class Seller {
     }
 
     /**
-     *
+     * 
      * @return
-     * The powerSellerStatus
+     *     The powerSellerStatus
      */
     public Object getPowerSellerStatus() {
         return powerSellerStatus;
     }
 
     /**
-     *
+     * 
      * @param powerSellerStatus
-     * The power_seller_status
+     *     The power_seller_status
      */
     public void setPowerSellerStatus(Object powerSellerStatus) {
         this.powerSellerStatus = powerSellerStatus;
@@ -87,18 +96,18 @@ public class Seller {
     }
 
     /**
-     *
+     * 
      * @return
-     * The carDealer
+     *     The carDealer
      */
     public Boolean getCarDealer() {
         return carDealer;
     }
 
     /**
-     *
+     * 
      * @param carDealer
-     * The car_dealer
+     *     The car_dealer
      */
     public void setCarDealer(Boolean carDealer) {
         this.carDealer = carDealer;
@@ -110,18 +119,18 @@ public class Seller {
     }
 
     /**
-     *
+     * 
      * @return
-     * The realEstateAgency
+     *     The realEstateAgency
      */
     public Boolean getRealEstateAgency() {
         return realEstateAgency;
     }
 
     /**
-     *
+     * 
      * @param realEstateAgency
-     * The real_estate_agency
+     *     The real_estate_agency
      */
     public void setRealEstateAgency(Boolean realEstateAgency) {
         this.realEstateAgency = realEstateAgency;
@@ -133,18 +142,18 @@ public class Seller {
     }
 
     /**
-     *
+     * 
      * @return
-     * The tags
+     *     The tags
      */
     public List<Object> getTags() {
         return tags;
     }
 
     /**
-     *
+     * 
      * @param tags
-     * The tags
+     *     The tags
      */
     public void setTags(List<Object> tags) {
         this.tags = tags;
@@ -156,4 +165,3 @@ public class Seller {
     }
 
 }
-

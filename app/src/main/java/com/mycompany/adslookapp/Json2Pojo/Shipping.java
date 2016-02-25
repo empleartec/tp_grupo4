@@ -1,26 +1,29 @@
-package com.mycompany.adslookapp;
+
+package com.mycompany.adslookapp.Json2Pojo;
 
 //import javax.annotation.Generated;
-
-/**
- * Created by pulpo on 22/02/16.
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
 public class Shipping {
 
+    @SerializedName("free_shipping")
+    @Expose
     private Boolean freeShipping;
+    @SerializedName("mode")
+    @Expose
     private String mode;
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public Shipping() {
     }
 
     /**
-     *
+     * 
      * @param freeShipping
      * @param mode
      */
@@ -30,18 +33,18 @@ public class Shipping {
     }
 
     /**
-     *
+     * 
      * @return
-     * The freeShipping
+     *     The freeShipping
      */
     public Boolean getFreeShipping() {
         return freeShipping;
     }
 
     /**
-     *
+     * 
      * @param freeShipping
-     * The free_shipping
+     *     The free_shipping
      */
     public void setFreeShipping(Boolean freeShipping) {
         this.freeShipping = freeShipping;
@@ -53,18 +56,18 @@ public class Shipping {
     }
 
     /**
-     *
+     * 
      * @return
-     * The mode
+     *     The mode
      */
     public String getMode() {
         return mode;
     }
 
     /**
-     *
+     * 
      * @param mode
-     * The mode
+     *     The mode
      */
     public void setMode(String mode) {
         this.mode = mode;
@@ -76,4 +79,3 @@ public class Shipping {
     }
 
 }
-

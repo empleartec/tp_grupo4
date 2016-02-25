@@ -1,36 +1,55 @@
-package com.mycompany.adslookapp;
+
+package com.mycompany.adslookapp.Json2Pojo;
 
 import java.util.ArrayList;
 import java.util.List;
 //import javax.annotation.Generated;
-
-/**
- * Created by pulpo on 22/02/16.
- */
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 //@Generated("org.jsonschema2pojo")
 public class MLjson {
 
+    @SerializedName("site_id")
+    @Expose
     private String siteId;
+    @SerializedName("query")
+    @Expose
     private String query;
+    @SerializedName("paging")
+    @Expose
     private Paging paging;
+    @SerializedName("results")
+    @Expose
     private List<Result> results = new ArrayList<Result>();
+    @SerializedName("secondary_results")
+    @Expose
     private List<Object> secondaryResults = new ArrayList<Object>();
+    @SerializedName("related_results")
+    @Expose
     private List<Object> relatedResults = new ArrayList<Object>();
+    @SerializedName("sort")
+    @Expose
     private Sort sort;
+    @SerializedName("available_sorts")
+    @Expose
     private List<AvailableSort> availableSorts = new ArrayList<AvailableSort>();
+    @SerializedName("filters")
+    @Expose
     private List<Filter> filters = new ArrayList<Filter>();
+    @SerializedName("available_filters")
+    @Expose
     private List<AvailableFilter> availableFilters = new ArrayList<AvailableFilter>();
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public MLjson() {
     }
 
     /**
-     *
+     * 
      * @param sort
      * @param results
      * @param siteId
@@ -56,18 +75,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The siteId
+     *     The siteId
      */
     public String getSiteId() {
         return siteId;
     }
 
     /**
-     *
+     * 
      * @param siteId
-     * The site_id
+     *     The site_id
      */
     public void setSiteId(String siteId) {
         this.siteId = siteId;
@@ -79,18 +98,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The query
+     *     The query
      */
     public String getQuery() {
         return query;
     }
 
     /**
-     *
+     * 
      * @param query
-     * The query
+     *     The query
      */
     public void setQuery(String query) {
         this.query = query;
@@ -102,18 +121,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The paging
+     *     The paging
      */
     public Paging getPaging() {
         return paging;
     }
 
     /**
-     *
+     * 
      * @param paging
-     * The paging
+     *     The paging
      */
     public void setPaging(Paging paging) {
         this.paging = paging;
@@ -125,18 +144,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The results
+     *     The results
      */
     public List<Result> getResults() {
         return results;
     }
 
     /**
-     *
+     * 
      * @param results
-     * The results
+     *     The results
      */
     public void setResults(List<Result> results) {
         this.results = results;
@@ -148,18 +167,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The secondaryResults
+     *     The secondaryResults
      */
     public List<Object> getSecondaryResults() {
         return secondaryResults;
     }
 
     /**
-     *
+     * 
      * @param secondaryResults
-     * The secondary_results
+     *     The secondary_results
      */
     public void setSecondaryResults(List<Object> secondaryResults) {
         this.secondaryResults = secondaryResults;
@@ -171,18 +190,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The relatedResults
+     *     The relatedResults
      */
     public List<Object> getRelatedResults() {
         return relatedResults;
     }
 
     /**
-     *
+     * 
      * @param relatedResults
-     * The related_results
+     *     The related_results
      */
     public void setRelatedResults(List<Object> relatedResults) {
         this.relatedResults = relatedResults;
@@ -194,18 +213,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The sort
+     *     The sort
      */
     public Sort getSort() {
         return sort;
     }
 
     /**
-     *
+     * 
      * @param sort
-     * The sort
+     *     The sort
      */
     public void setSort(Sort sort) {
         this.sort = sort;
@@ -217,18 +236,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The availableSorts
+     *     The availableSorts
      */
     public List<AvailableSort> getAvailableSorts() {
         return availableSorts;
     }
 
     /**
-     *
+     * 
      * @param availableSorts
-     * The available_sorts
+     *     The available_sorts
      */
     public void setAvailableSorts(List<AvailableSort> availableSorts) {
         this.availableSorts = availableSorts;
@@ -240,18 +259,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The filters
+     *     The filters
      */
     public List<Filter> getFilters() {
         return filters;
     }
 
     /**
-     *
+     * 
      * @param filters
-     * The filters
+     *     The filters
      */
     public void setFilters(List<Filter> filters) {
         this.filters = filters;
@@ -263,18 +282,18 @@ public class MLjson {
     }
 
     /**
-     *
+     * 
      * @return
-     * The availableFilters
+     *     The availableFilters
      */
     public List<AvailableFilter> getAvailableFilters() {
         return availableFilters;
     }
 
     /**
-     *
+     * 
      * @param availableFilters
-     * The available_filters
+     *     The available_filters
      */
     public void setAvailableFilters(List<AvailableFilter> availableFilters) {
         this.availableFilters = availableFilters;
