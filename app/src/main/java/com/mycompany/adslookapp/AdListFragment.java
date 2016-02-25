@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class AdListFragment  extends Fragment {
 
-    ArrayList<String> adsTitle = new ArrayList<>();
+  //  ArrayList<String> adsTitle = new ArrayList<>();
 
     /*
     @Override
@@ -40,18 +40,24 @@ public class AdListFragment  extends Fragment {
         // Llamamos a nuestra listView y al adapter
         ListView listView = (ListView) view.findViewById(R.id.ad_listview);
 
-
+/*
         ArrayList<String> adsTitle = new ArrayList<>();
         adsTitle.add("anuncio1");
         adsTitle.add("anuncio2");
         adsTitle.add("anuncio3");
         adsTitle.add("anuncio4");
         adsTitle.add("anuncio5");
-
+*/
       //  ArrayList<String> adsTitle = getArguments().getStringArrayList("adsTitle");
 
         //ArrayList<String> adsTitle = this.getArguments().getStringArrayList("adsTitle");
 
+        //String titulo2 = this.getArguments().getString("titulo2");
+        //Log.d("pasa", titulo2);
+
+        MainActivity activity = (MainActivity) getActivity();
+
+        ArrayList<String> adsTitle = activity.getAllTitles();
 
                 AdListAdapter myAdapter = new AdListAdapter(this, adsTitle);
 

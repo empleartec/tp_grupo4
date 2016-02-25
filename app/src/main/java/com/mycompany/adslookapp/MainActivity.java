@@ -15,6 +15,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.mycompany.adslookapp.Json2Pojo.MLjson;
 import com.mycompany.adslookapp.Json2Pojo.Result;
 
@@ -37,8 +38,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     //Creamos un array con los titulos de cada articulo
-    ArrayList<String> adsTitle = new ArrayList<>();
-    Bundle resultsList = new Bundle();
+    private ArrayList<String> adsTitle = new ArrayList<>();
+
+    private ArrayList<Double> adsLat = new ArrayList<>();
+    private ArrayList<Double> adsLong = new ArrayList<>();
+
+//    LatLng mylat = new LatLng() SE CONSTRUYE CON doubles
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,26 +85,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                     MLjson mLjson = response.body();
 
-
                     if (mLjson != null && mLjson.getResults() != null) {
-                        Log.d("MELI", "" + mLjson.getResults().size());
-                        Log.d("MELI2", "" + response.body().toString());
 
+                        //Llenamos el array con los titulos y las coord de los resultados
 
-
-
-                        //Llenamos el array con los titulos de los resultados
-/*
                         for (int i=0; i<mLjson.getResults().size(); i++) {
-                            adsTitle.add(mLjson.getResults()[i].getTitle());
-                        }
+                            adsTitle.add(mLjson.getResults().get(i).getTitle());
 
-                        //Creamos un bundle y pasamos los titulos a AdListFragment
+                            adsLat.add(mLjson.getResults().get(i).getSellerAddress().getLatitude());
+                            adsLong.add(mLjson.getResults().get(i).getSellerAddress().getLongitude());
+                    }
 
-                        resultsList.putStringArrayList("adsTitle", adsTitle);
-
-                        //listFragment.setArguments(resultsList);
-*/
+                        //FUNCIONAN
+                        Log.d("myTitle", adsTitle.get(2));
+                        Log.d("myLocation", adsLat.get(2).toString());
 
                     }
                 }
@@ -114,8 +114,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-
-
+public ArrayList getAllTitles(){
+    return adsTitle;
+}
 
     //Llamamos al mapa
     @Override
@@ -123,6 +124,30 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mGoogleMap = googleMap;
 
+        /*
+        * Gabriel, esto no funciona.
+        * No encontré la forma de acceder a las coordenadas de los artículos desde este método.
+        *El for de aca abajo no da errores pero tiene size cero, por eso no se marca nada..,
+        *creo que estoy accediendo a los arrays adsLat y adsLong antes de llenarlos con los
+        * valores que trae el servicio.
+        *
+        * */
+
+
+        for (int j=0; j<adsLat.size(); j++) {
+            mGoogleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(adsLat.get(j), adsLong.get(j)))
+                    .title(adsTitle.get(j)));
+
+        }
+
+        ArrayList<String> adsTitle2 = this.getAllTitles();
+
+
+
+
+        //CODIGO ANTERIOR
+        /*
         List<Ad> ads = AdsStore.getAll();
 
         for (Ad ad: ads){
@@ -130,14 +155,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .position(ad.getCoord())
                     .title(ad.getAddress()));
         }
+*/
 
-        Ad lastAd = ads.get(ads.size() - 1);
-        LatLng lastAdLoc = lastAd.getCoord();
+       // Ad lastAd = ads.get(ads.size() - 1);
+       // LatLng lastAdLoc = lastAd.getCoord();
+
+/*
+        int adQ = adsLat.size() - 1;
+        LatLng lastAdLoc = new LatLng(adsLat.get(adQ), adsLong.get(adQ));
 
         mGoogleMap.animateCamera(
                 CameraUpdateFactory
                         .newLatLngZoom(lastAdLoc, 14));
-
+*/
         //Esta linea no es util
         //mGoogleMap.setMyLocationEnabled(true);
 

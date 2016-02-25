@@ -31,10 +31,10 @@ public class SellerAddress {
     private City city;
     @SerializedName("latitude")
     @Expose
-    private Float latitude;
+    private Double latitude;
     @SerializedName("longitude")
     @Expose
-    private Float longitude;
+    private Double longitude;
 
     /**
      * No args constructor for use in serialization
@@ -55,7 +55,7 @@ public class SellerAddress {
      * @param city
      * @param country
      */
-    public SellerAddress(Integer id, String comment, String addressLine, String zipCode, Country country, State state, City city, Float latitude, Float longitude) {
+    public SellerAddress(Integer id, String comment, String addressLine, String zipCode, Country country, State state, City city, Double latitude, Double longitude) {
         this.id = id;
         this.comment = comment;
         this.addressLine = addressLine;
@@ -233,7 +233,7 @@ public class SellerAddress {
      * @return
      *     The latitude
      */
-    public Float getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
@@ -242,11 +242,11 @@ public class SellerAddress {
      * @param latitude
      *     The latitude
      */
-    public void setLatitude(Float latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public SellerAddress withLatitude(Float latitude) {
+    public SellerAddress withLatitude(Double latitude) {
         this.latitude = latitude;
         return this;
     }
@@ -256,7 +256,7 @@ public class SellerAddress {
      * @return
      *     The longitude
      */
-    public Float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
@@ -265,11 +265,11 @@ public class SellerAddress {
      * @param longitude
      *     The longitude
      */
-    public void setLongitude(Float longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
-    public SellerAddress withLongitude(Float longitude) {
+    public SellerAddress withLongitude(Double longitude) {
         this.longitude = longitude;
         return this;
     }
