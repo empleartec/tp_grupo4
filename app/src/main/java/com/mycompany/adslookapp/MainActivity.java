@@ -5,25 +5,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.Gson;
 import com.mycompany.adslookapp.Json2Pojo.MLjson;
-import com.mycompany.adslookapp.Json2Pojo.Result;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -81,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onResponse(Call<MLjson> call, Response<MLjson> response) {
                 try {
+                    Log.e("MAPA", "onResponse");
                     jsonText.setText(
                             response.body() != null ?
                                     response.body().toString() :
@@ -109,6 +104,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 catch (IOException e){
                     e.printStackTrace();
                 }
+                if (mGoogleMap != null) {
+                    showData();
+                }
             }
 
             @Override
@@ -116,6 +114,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Log.e("MELI", "Error " + t.getMessage());
             }
         });
+    }
+
+    /**
+     * Muestra los datos en el mapa
+     */
+    private void showData() {
+        for (int j=0; j<adsLat.size(); j++) {
+            mGoogleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(adsLat.get(j), adsLong.get(j)))
+                    .title(adsTitle.get(j)));
+
+        }
     }
 
     @Override
@@ -135,28 +145,13 @@ public ArrayList getAllTitles(){
     //Llamamos al mapa
     @Override
     public void onMapReady( GoogleMap googleMap) {
-
+    Log.e("MAPA", "onMapReady");
         mGoogleMap = googleMap;
 
-        /*
-        * Gabriel, esto no funciona.
-        * No encontré la forma de acceder a las coordenadas de los artículos desde este método.
-        *El for de aca abajo no da errores pero tiene size cero, por eso no se marca nada..,
-        *creo que estoy accediendo a los arrays adsLat y adsLong antes de llenarlos con los
-        * valores que trae el servicio.
-        *
-        * */
-
-
-        for (int j=0; j<adsLat.size(); j++) {
-            mGoogleMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(adsLat.get(j), adsLong.get(j)))
-                    .title(adsTitle.get(j)));
-
+        if (!adsTitle.isEmpty()) {
+            showData();
         }
-
         ArrayList<String> adsTitle2 = this.getAllTitles();
-
 
 
 
