@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import android.util.Log;
+import android.view.Menu;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -52,8 +53,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Log.d("FUNKA", "Debugger funcionando");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //toolbar.setNavigationIcon(R.drawable.ic_toolbar);
+        toolbar.setTitle("");
+        toolbar.setSubtitle("");
+        //toolbar.setLogo(R.drawable.ic_toolbar);
 
         final Fragment listFragment =  (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
 
@@ -113,6 +117,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(
+                R.menu.menu_main, menu);
+        return true;
+    }
+
+
+
 
 public ArrayList getAllTitles(){
     return adsTitle;
