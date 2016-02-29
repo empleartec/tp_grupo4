@@ -1,17 +1,27 @@
 package com.mycompany.adslookapp;
 
 
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.mycompany.adslookapp.Json2Pojo.MLjson;
@@ -53,12 +63,61 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         toolbar.setSubtitle("");
         //toolbar.setLogo(R.drawable.ic_toolbar);
 
-        final Fragment listFragment =  (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+    }
+
+
+/*
+
+
+        if (!adsTitle.isEmpty()) {
+            showData();
+        }
+        ArrayList<String> adsTitle2 = this.getAllTitles();
+* */
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Muestra los datos en el mapa
+     */
+    private void showData() {
+        for (int j=0; j<adsLat.size(); j++) {
+            mGoogleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(adsLat.get(j), adsLong.get(j)))
+                    .title(adsTitle.get(j)));
+
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(
+                R.menu.menu_main, menu);
+
+        /*
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchview = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+        */
+        final Fragment listFragment =  (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
+
+
+
+
 
         //Creamos un extView en el XML para ver el json del servicio
         final TextView jsonText = (TextView) findViewById(R.id.json);
@@ -93,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                             adsLat.add(mLjson.getResults().get(i).getSellerAddress().getLatitude());
                             adsLong.add(mLjson.getResults().get(i).getSellerAddress().getLongitude());
-                    }
+                        }
 
                         //FUNCIONAN
                         Log.d("myTitle", adsTitle.get(2));
@@ -114,44 +173,58 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Log.e("MELI", "Error " + t.getMessage());
             }
         });
-    }
 
-    /**
-     * Muestra los datos en el mapa
-     */
-    private void showData() {
-        for (int j=0; j<adsLat.size(); j++) {
-            mGoogleMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(adsLat.get(j), adsLong.get(j)))
-                    .title(adsTitle.get(j)));
-
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(
-                R.menu.menu_main, menu);
         return true;
     }
 
 
 
 
-public ArrayList getAllTitles(){
-    return adsTitle;
-}
+    public ArrayList getAllTitles(){
+        return adsTitle;
+    }
 
     //Llamamos al mapa
     @Override
     public void onMapReady( GoogleMap googleMap) {
-    Log.e("MAPA", "onMapReady");
+        Log.e("MAPA", "onMapReady");
         mGoogleMap = googleMap;
 
-        if (!adsTitle.isEmpty()) {
-            showData();
+
+        //http://stackoverflow.com/questions/18425141/android-google-maps-api-v2-zoom-to-current-location
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+
+        if (location != null) {
+
+            mGoogleMap.animateCamera(
+                    CameraUpdateFactory
+                            .newLatLngZoom(
+                                    new LatLng(location.getLatitude(), location.getLongitude()), 14));
+
+            mGoogleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(location.getLatitude(), location.getLongitude()))
+                    .title("Estás acá")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.hellokitty003)));
+
+            /*
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
+                    .zoom(17)                   // Sets the zoom
+                    .bearing(90)                // Sets the orientation of the camera to east
+                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
+                    .build();                   // Creates a CameraPosition from the builder
+            mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+*/
         }
-        ArrayList<String> adsTitle2 = this.getAllTitles();
+
+
+
+
+
+
+
 
 
 
@@ -166,8 +239,8 @@ public ArrayList getAllTitles(){
         }
 */
 
-       // Ad lastAd = ads.get(ads.size() - 1);
-       // LatLng lastAdLoc = lastAd.getCoord();
+        // Ad lastAd = ads.get(ads.size() - 1);
+        // LatLng lastAdLoc = lastAd.getCoord();
 
 /*
         int adQ = adsLat.size() - 1;
