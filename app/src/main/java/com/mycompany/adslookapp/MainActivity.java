@@ -71,24 +71,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-/*
-
-
-        if (!adsTitle.isEmpty()) {
-            showData();
-        }
-        ArrayList<String> adsTitle2 = this.getAllTitles();
-* */
-
-
-
-
-
-
-
-
-
-
+    
     /**
      * Muestra los datos en el mapa
      */
@@ -116,12 +99,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         final Fragment listFragment =  (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
 
 
-
-
-
-        //Creamos un extView en el XML para ver el json del servicio
-        final TextView jsonText = (TextView) findViewById(R.id.json);
-
+        //Llamamos al servicio
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(MELI_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -134,8 +112,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onResponse(Call<MLjson> call, Response<MLjson> response) {
                 try {
-                    Log.e("MAPA", "onResponse");
-                    jsonText.setText(
+
+                    //No se para que es esto. Pero si lo saco el catch da un error
+                    String jsonText = (String) (
                             response.body() != null ?
                                     response.body().toString() :
                                     response.errorBody().string());
@@ -190,7 +169,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.e("MAPA", "onMapReady");
         mGoogleMap = googleMap;
 
-
         //http://stackoverflow.com/questions/18425141/android-google-maps-api-v2-zoom-to-current-location
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
@@ -207,51 +185,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .position(new LatLng(location.getLatitude(), location.getLongitude()))
                     .title("Estás acá")
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.hellokitty003)));
-
-            /*
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
-                    .zoom(17)                   // Sets the zoom
-                    .bearing(90)                // Sets the orientation of the camera to east
-                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
-                    .build();                   // Creates a CameraPosition from the builder
-            mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-*/
         }
-
-
-
-
-
-
-
-
-
-
-        //CODIGO ANTERIOR
-        /*
-        List<Ad> ads = AdsStore.getAll();
-
-        for (Ad ad: ads){
-            mGoogleMap.addMarker(new MarkerOptions()
-                    .position(ad.getCoord())
-                    .title(ad.getAddress()));
-        }
-*/
-
-        // Ad lastAd = ads.get(ads.size() - 1);
-        // LatLng lastAdLoc = lastAd.getCoord();
-
-/*
-        int adQ = adsLat.size() - 1;
-        LatLng lastAdLoc = new LatLng(adsLat.get(adQ), adsLong.get(adQ));
-
-        mGoogleMap.animateCamera(
-                CameraUpdateFactory
-                        .newLatLngZoom(lastAdLoc, 14));
-*/
-        //Esta linea no es util
-        //mGoogleMap.setMyLocationEnabled(true);
-
     }
 }
