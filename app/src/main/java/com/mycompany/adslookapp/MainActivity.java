@@ -3,6 +3,7 @@ package com.mycompany.adslookapp;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -65,12 +66,29 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         toolbar.setSubtitle("");
         //toolbar.setLogo(R.drawable.ic_toolbar);
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
 
-        final Fragment listFragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
+            final Fragment listFragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
+        }
+
+        else {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.mapPortrait);
+            mapFragment.getMapAsync(this);
+
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.layout1, mapFragment).commit();
+
+
+            //final Fragment listFragmentPortrait = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragmentPortrait);
+
+        }
 
     }
 
@@ -182,6 +200,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 transaction.replace(mapF)
 */
 
+                //http://developer.android.com/intl/es/training/basics/fragments/fragment-ui.html
+
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+              //  final Fragment listFragmentPortrait = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragmentPortrait);
+
+
+
+                Fragment textFragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.textFragmentPortrait);
+
+
+                //No jode pero no hace nada
+//                Fragment listFragmentPortrait = new Fragment();
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack so the user can navigate back
+                transaction.replace(R.id.layout1,  textFragment);
+          //      transaction.addToBackStack(null);
+
+// Commit the transaction
+                transaction.commit();
 
                 return true;
 
