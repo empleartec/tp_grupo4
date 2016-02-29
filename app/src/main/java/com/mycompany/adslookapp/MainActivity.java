@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,6 +29,7 @@ import com.mycompany.adslookapp.Json2Pojo.MLjson;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,8 +49,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private ArrayList<Double> adsLat = new ArrayList<>();
     private ArrayList<Double> adsLong = new ArrayList<>();
-
-//    LatLng mylat = new LatLng() SE CONSTRUYE CON doubles
 
 
     @Override
@@ -71,8 +71,106 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-    
-    /**
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(
+                R.menu.menu_main, menu);
+
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchview = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                if (query.length() == 0) {
+                } else {
+
+                    //Limpiamos los resultados anteriores
+                    adsTitle.clear();
+                    adsLat.clear();
+                    adsLong.clear();
+                    mGoogleMap.clear();
+
+                    final Fragment listFragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
+
+                    //Llamamos al servicio
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(MELI_BASE_URL)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    MeliService service = retrofit.create(MeliService.class);
+
+                    Call<MLjson> loadAds = service.loadAds(query);
+
+                    loadAds.enqueue(new Callback<MLjson>() {
+                        @Override
+                        public void onResponse(Call<MLjson> call, Response<MLjson> response) {
+                            try {
+
+                                //No se para que es esto. Pero si lo saco el catch da un error
+                                String jsonText = (String) (
+                                        response.body() != null ?
+                                                response.body().toString() :
+                                                response.errorBody().string());
+
+
+                                MLjson mLjson = response.body();
+
+                                if (mLjson != null && mLjson.getResults() != null) {
+
+                                    //Llenamos el array con los titulos y las coord de los resultados
+
+                                    for (int i = 0; i < mLjson.getResults().size(); i++) {
+                                        adsTitle.add(mLjson.getResults().get(i).getTitle());
+
+                                        adsLat.add(mLjson.getResults().get(i).getSellerAddress().getLatitude());
+                                        adsLong.add(mLjson.getResults().get(i).getSellerAddress().getLongitude());
+                                    }
+
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            if (mGoogleMap != null) {
+                                showData();
+                                markMe();
+                                mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<MLjson> call, Throwable t) {
+                            Log.e("MELI", "Error " + t.getMessage());
+                        }
+                    });
+
+                }//Cerramos el else
+                return false;
+            }// Cerramos onQueryTextSubmit
+
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+
+
+        }); // end setOnQueryTextListener
+        return true;
+    }//cierra onCreateOptionsMenu
+
+
+
+    //Este metodo lo usa el fragment de la lista.
+    public ArrayList getAllTitles(){
+        return adsTitle;
+    }
+
+    /*
      * Muestra los datos en el mapa
      */
     private void showData() {
@@ -80,94 +178,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             mGoogleMap.addMarker(new MarkerOptions()
                     .position(new LatLng(adsLat.get(j), adsLong.get(j)))
                     .title(adsTitle.get(j)));
-
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(
-                R.menu.menu_main, menu);
-
-        /*
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchview = (SearchView) MenuItemCompat.getActionView(searchItem);
-
-        @Override
-        public boolean onQueryTextSubmit(String query) {
-        */
-        final Fragment listFragment =  (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
-
-
-        //Llamamos al servicio
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MELI_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        MeliService service = retrofit.create(MeliService.class);
-
-        Call <MLjson> loadAds = service.loadAds("ipod");
-
-        loadAds.enqueue(new Callback<MLjson>() {
-            @Override
-            public void onResponse(Call<MLjson> call, Response<MLjson> response) {
-                try {
-
-                    //No se para que es esto. Pero si lo saco el catch da un error
-                    String jsonText = (String) (
-                            response.body() != null ?
-                                    response.body().toString() :
-                                    response.errorBody().string());
-
-
-                    MLjson mLjson = response.body();
-
-                    if (mLjson != null && mLjson.getResults() != null) {
-
-                        //Llenamos el array con los titulos y las coord de los resultados
-
-                        for (int i=0; i<mLjson.getResults().size(); i++) {
-                            adsTitle.add(mLjson.getResults().get(i).getTitle());
-
-                            adsLat.add(mLjson.getResults().get(i).getSellerAddress().getLatitude());
-                            adsLong.add(mLjson.getResults().get(i).getSellerAddress().getLongitude());
-                        }
-
-                        //FUNCIONAN
-                        Log.d("myTitle", adsTitle.get(2));
-                        Log.d("myLocation", adsLat.get(2).toString());
-
-                    }
-                }
-                catch (IOException e){
-                    e.printStackTrace();
-                }
-                if (mGoogleMap != null) {
-                    showData();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MLjson> call, Throwable t) {
-                Log.e("MELI", "Error " + t.getMessage());
-            }
-        });
-
-        return true;
-    }
-
-
-
-
-    public ArrayList getAllTitles(){
-        return adsTitle;
-    }
-
-    //Llamamos al mapa
-    @Override
-    public void onMapReady( GoogleMap googleMap) {
-        Log.e("MAPA", "onMapReady");
-        mGoogleMap = googleMap;
+    public void markMe (){
 
         //http://stackoverflow.com/questions/18425141/android-google-maps-api-v2-zoom-to-current-location
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -186,5 +200,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .title("Estás acá")
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.hellokitty003)));
         }
+    }
+
+    //Llamamos al mapa
+    @Override
+    public void onMapReady( GoogleMap googleMap) {
+        Log.e("MAPA", "onMapReady");
+        mGoogleMap = googleMap;
+        markMe();
     }
 }
