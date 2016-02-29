@@ -1,6 +1,7 @@
 package com.mycompany.adslookapp;
 
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.location.Criteria;
 import android.location.Location;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        final Fragment listFragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
+
     }
 
 
@@ -78,9 +82,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchview = (SearchView) MenuItemCompat.getActionView(searchItem);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
-        searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -94,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     adsLong.clear();
                     mGoogleMap.clear();
 
-                    final Fragment listFragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
+
 
                     //Llamamos al servicio
                     Retrofit retrofit = new Retrofit.Builder()
@@ -160,12 +164,40 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         }); // end setOnQueryTextListener
+       // searchView.setQuery("", false);
+        //searchView.setIconified(true);
         return true;
     }//cierra onCreateOptionsMenu
 
 
 
-    //Este metodo lo usa el fragment de la lista.
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_changeView:
+/*
+ //              Fragment listFragment2 = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
+   //             listFragment2.
+                // User chose the "Settings" item, show the app settings UI...
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(mapF)
+*/
+
+
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+
+        }
+    }
+
+
+
+
+            //Este metodo lo usa el fragment de la lista.
     public ArrayList getAllTitles(){
         return adsTitle;
     }

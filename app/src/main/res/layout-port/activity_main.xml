@@ -22,8 +22,16 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
         <fragment
+            android:id="@+id/listFragment"
+            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:layout_height="match_parent"
+            class="com.mycompany.adslookapp.AdListFragment"/>
+
+        <fragment
             android:id="@+id/map"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             class="com.google.android.gms.maps.SupportMapFragment"/>
 
